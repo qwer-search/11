@@ -4,12 +4,12 @@
         <li class="home">
             <RouterLink to="/">首页</RouterLink>
         </li>
-        <li v-for="item in list " :key="item.id">
-            <RouterLink :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
-            <div class="layer">
+        <li v-for="item in list " :key="item.id" @mouseenter="show(item)" @mouseleave="hide(item)">
+            <RouterLink @click="hide(item)" :to="`/category/${item.id}`">{{ item.name }}</RouterLink>
+            <div class="layer" :class="{ open: item.open }">
                 <ul>
                     <li v-for="sub in item.children" :key="sub.id">
-                        <RouterLink :to="`/category/sub/${sub.id}`">
+                        <RouterLink @click="hide(item)" :to="`/category/sub/${sub.id}`">
                             <img :src="sub.picture" alt="">
                             <p>{{ sub.name }}</p>
                         </RouterLink>
@@ -33,9 +33,15 @@ export default {
         const list = computed(() => {
             return store.state.category.list
         })
-        return { list }
 
 
+        const show = (item) => {
+            store.commit('category/show', item.id)
+        }
+        const hide = (item) => {
+            store.commit('category/hide', item.id)
+        }
+        return { list, show, hide }
     }
 }
 </script>
@@ -69,16 +75,21 @@ export default {
             }
 
             // 显示二级类目
-            >.layer {
-                height: 132px;
-                opacity: 1;
-            }
+            // >.layer {
+            //     height: 132px;
+            //     opacity: 1;
+            // }
         }
     }
 }
 
 // 二级类目弹窗层
 .layer {
+    &.open {
+        height: 132px;
+        opacity: 1;
+    }
+
     width: 1240px;
     background-color: #fff;
     position: absolute;
