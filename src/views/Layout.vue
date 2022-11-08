@@ -17,11 +17,18 @@
 import AppNavbar from '../components/app-navbar.vue'
 import AppHeader from '../components/app-header.vue'
 import AppFooter from '../components/app-footer.vue'
+import { useStore } from 'vuex'
 
 export default {
-
+  name: 'Layout',
   components: { AppNavbar, AppHeader, AppFooter },
-  name: 'Layout'
+
+  setup() {
+    const store = useStore()
+    store.dispatch('category/getList')
+
+  }
+
 }
 </script>
 

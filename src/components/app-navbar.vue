@@ -2,9 +2,9 @@
     <nav class="app-topnav">
         <div class="container">
             <ul>
-                <template v-if="this.$store.state.user.profile.token">
+                <template v-if="profile.token">
                     <li><a href="javascript:;"><i class="iconfont icon-user"></i>{{
-                            this.$store.state.user.profile.account
+                            profile.account
                     }}</a></li>
                     <li><a href="javascript:;">退出登录</a></li>
                 </template>
@@ -23,28 +23,22 @@
 </template>
 <script>
 
-// import useStore from 'vuex';
-// import computed from 'vue';
+import { useStore } from 'vuex';
+import { computed } from 'vue';
+
 
 
 export default {
     name: 'AppTopnav',
     setup() {
-        // const store = useStore()
-        // const profile = computed(() => {
-        //     return store.state.user.profile
-        // })
-        // return { profile }
+        const store = useStore()
+        const profile = computed(() => {
+            return store.state.user.profile
+        })
+        return { profile }
 
     },
-    computed: {
-        // ...mapState({
-        //     user: (state) => {
-        //         return state.user.profile
 
-        //     }
-        // })
-    }
 }
 </script>
 <style scoped lang="less">
