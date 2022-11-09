@@ -5,12 +5,13 @@ import router from '@/router'
 // 1.创建新的axios实例
 
 // 导出基准地址，原因：其他地方不是通过axios发请求的地方用上基准地址
+// export const baseURL = 'http://apipc-xiaotuxian-front.itheima.net/'
 export const baseURL = 'http://pcapi-xiaotuxian-front-devtest.itheima.net/'
 
 const instance = axios.create({
   // axios的一些配置，baseURL timeout
   baseURL,
-  timeout: 5000
+  // timeout: 5000
 })
 
 // 2.请求拦截器，如有token进行头部携带
