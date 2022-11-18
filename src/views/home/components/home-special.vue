@@ -12,7 +12,7 @@
                             <span class="top ellipsis">{{ item.title }}</span>
                             <span class="sub ellipsis">{{ item.summary }}</span>
                         </p>
-                        <span class="price">&yen;{{ item.price }}起</span>
+                        <span class="price">&yen;{{ item.lowestPrice }}起</span>
                     </div>
                 </RouterLink>
                 <div class="foot">
